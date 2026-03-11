@@ -94,40 +94,52 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-/* Portrait-style profile image */
-.hero-photo img {
-    width: 300px;
-    height: 500px;
-    object-fit: cover;            /* keep aspect ratio, crop if needed */
-    border-radius: 12px;          /* slight rounding for modern look */
-    border: none;                 /* no border */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* soft shadow */
-    opacity: 0;                   /* start hidden */
-    transform: translateY(-50px); /* start slightly above */
-    animation: heroImagePortrait 1s ease forwards; /* animate on load */
-}
 
-/* Animation: slide down & fade in */
-@keyframes heroImagePortrait {
-    0% {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    60% {
-        opacity: 1;
-        transform: translateY(10px); /* slight bounce */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        /* Portrait-style profile image */
+        .hero-photo img {
+            width: 300px;
+            height: 500px;
+            object-fit: cover;
+            /* keep aspect ratio, crop if needed */
+            border-radius: 12px;
+            /* slight rounding for modern look */
+            border: none;
+            /* no border */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            /* soft shadow */
+            opacity: 0;
+            /* start hidden */
+            transform: translateY(-50px);
+            /* start slightly above */
+            animation: heroImagePortrait 1s ease forwards;
+            /* animate on load */
+        }
 
-/* Optional hover effect */
-.hero-photo img:hover {
-    transform: translateY(0) scale(1.03);
-    transition: transform 0.3s ease;
-}
+        /* Animation: slide down & fade in */
+        @keyframes heroImagePortrait {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translateY(10px);
+                /* slight bounce */
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Optional hover effect */
+        .hero-photo img:hover {
+            transform: translateY(0) scale(1.03);
+            transition: transform 0.3s ease;
+        }
+
         .hero-text h1 {
             font-size: 48px;
             font-weight: 700;
@@ -421,7 +433,7 @@
             }
 
             .hero-photo img {
-                margin-top:100px;
+                margin-top: 100px;
                 width: 200px;
                 height: 300px;
             }
@@ -474,28 +486,29 @@
 
     </header>
 
-  <section class="hero">
-    <div class="hero-container">
-        <div class="hero-photo">
-            <img src="./vipinprofile.jpeg" alt="Vipin Kumar V">
-        </div>
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-photo">
+                <img src="./vipinprofile.jpeg" alt="Vipin Kumar V">
+            </div>
 
-        <div class="hero-text">
-            <h1>Vipin Kumar V</h1>
-            <p>Senior Laravel Developer specializing in scalable backend systems, API integrations, and high-performance web applications.</p>
-            <button onclick="downloadResume()">Download Resume</button>
+            <div class="hero-text">
+                <h1>Vipin Kumar V</h1>
+                <p>Senior Laravel Developer specializing in scalable backend systems, API integrations, and
+                    high-performance web applications.</p>
+                <button onclick="downloadResume()">Download Resume</button>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-   <section id="about">
+    <section id="about">
         <h2 class="section-title">About Me</h2>
         <div class="card show">
             Professional Laravel Developer with strong experience in scalable architecture, database optimization, REST
             APIs, and performance tuning. Passionate about clean code, problem solving, and delivering high-quality
             production systems.
         </div>
-    </section
+    </section>
 
     <section id="experience">
         <h2 class="section-title">Experience</h2>
@@ -605,17 +618,19 @@
     description:'QikPay is a billing and recharge platform similar to the QuickPay app, developed using Laravel. It allows users to make payments, recharge services, and manage transactions seamlessly. The admin panel, built with Skote template, Blade, Bootstrap, HTML, CSS, Ajax, and jQuery, provides comprehensive dashboards and management tools for monitoring transactions, users, and services efficiently.',
     technologies:['Laravel','Blade','HTML','CSS','Ajax','jQuery','Bootstrap','Skote']
 })">QikPay</div>
-<div class="card" onclick="openModal({
-    title:'KEPA - Kerala Police Academy',
-    description:'KEPA (Kerala Police Academy) is a website for managing Kerala Police data including exams, events, and all other official police-related information. The system streamlines operations and data management using Laravel, providing a secure and organized platform.',
-    technologies:['Laravel','AJAX','Bootstrap','JavaScript','jQuery','HTML','CSS']
-})">KEPA - Kerala Police Academy</div>
+
 
             <div class="card" onclick="openModal({
     title:'VSM Hospital Management',
     description:'VSM Hospital website is a comprehensive hospital management system developed using Laravel. It manages patient records, appointments, staff, billing, inventory, and all other hospital operations. The platform streamlines hospital administration and provides detailed reporting and analytics for better operational efficiency.',
     technologies:['Laravel','MySQL','JavaScript','HTML','CSS','Ajax','Blade','Bootstrap']
 })">VSM Hospital</div>
+
+          <div class="card" onclick="openModal({
+    title:'KEPA - Kerala Police Academy',
+    description:'KEPA (Kerala Police Academy) is a website for managing Kerala Police data including exams, events, and all other official police-related information. The system streamlines operations and data management using Laravel, providing a secure and organized platform.',
+    technologies:['Laravel','AJAX','Bootstrap','JavaScript','jQuery','HTML','CSS']
+})">KEPA - Kerala Police Academy</div>
 
         </div>
     </section>
