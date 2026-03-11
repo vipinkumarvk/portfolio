@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vipin Kumar V | Senior Laravel Developer</title>
+
+    <style>
+        :root {
+            --primary: #0b1120;
+            --accent: #3b82f6;
+            --light: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--text);
+            transition: 0.3s;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            width: 100%;
+            background: var(--card);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        .toggle-btn {
+            cursor: pointer;
+        }
+
+        /* HERO CONTAINER */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #7394e1, #0f172a);
+            color: white;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+/* Portrait-style profile image */
+.hero-photo img {
+    width: 300px;
+    height: 500px;
+    object-fit: cover;            /* keep aspect ratio, crop if needed */
+    border-radius: 12px;          /* slight rounding for modern look */
+    border: none;                 /* no border */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* soft shadow */
+    opacity: 0;                   /* start hidden */
+    transform: translateY(-50px); /* start slightly above */
+    animation: heroImagePortrait 1s ease forwards; /* animate on load */
+}
+
+/* Animation: slide down & fade in */
+@keyframes heroImagePortrait {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(10px); /* slight bounce */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Optional hover effect */
+.hero-photo img:hover {
+    transform: translateY(0) scale(1.03);
+    transition: transform 0.3s ease;
+}
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            max-width: 500px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .hero-text button {
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: none;
+            background: #ffcd38;
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hero-text button:hover {
+            background: #ffc107;
+            transform: scale(1.05);
+        }
+
+
+        /* Modal tech badges */
+        .tech-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .tech-badge:hover {
+            background: #1e40af;
+        }
+
+        /* SECTION */
+        section {
+            padding: 60px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            transition: 0.4s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Project hover */
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Grid layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        /* SKILLS */
+        .skill {
+            margin-bottom: 20px;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            width: 0;
+            background: var(--accent);
+            transition: width 1.5s ease;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--card);
+            font-size: 14px;
+        }
+
+        /* MOBILE */
+        .menu {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: var(--card);
+            padding: 25px 30px;
+            border-radius: 12px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            animation: slideUp 0.3s ease forwards;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .modal-close {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            background: #1e40af;
+            /* darker accent */
+        }
+
+        /* Experience cards */
+        #experience .card {
+            position: relative;
+            padding: 25px 25px 25px 40px;
+            border-left: 4px solid var(--accent);
+            background: var(--card);
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s, opacity 0.6s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Card hover effect */
+        #experience .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Job title */
+        #experience .card strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        /* Bullet points */
+        #experience .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #experience .card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.4s ease;
+        }
+
+        #experience .card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Show animation classes */
+        #experience .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #experience .card ul li.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+
+        /* Modal animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(-20px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @media(max-width:768px) {
+            nav ul {
+                position: absolute;
+                right: 0;
+                top: 60px;
+                background: var(--card);
+                flex-direction: column;
+                width: 220px;
+                padding: 20px;
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu {
+                position: absolute;
+                right: 20px;
+                top: 18px;
+                display: block;
+                font-size: 24px;
+                /* bigger touch target */
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-container {
+                flex-direction: column;
+            }
+
+            .hero-photo img {
+                width: 200px;
+                height: 500px;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .hero-text p {
+                max-width: 300px;
+            }
+        }
+
+        /* Experience bullets animation */
+        .card ul li {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease-out;
+        }
+
+        .card ul li.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav">
+            <div class="logo">Vipin Kumar V</div>
+
+            <div class="right-buttons">
+                <div class="menu" onclick="toggleMenu()">☰</div>
+            </div>
+
+            <nav>
+                <ul id="navLinks">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#accomplishments">Accomplishments</a></li>
+                    <li><a href="#education">Education</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+
+  <section class="hero">
+    <div class="hero-container">
+        <div class="hero-photo">
+            <img src="./image/vipinprofile.jpeg" alt="Vipin Kumar V">
+        </div>
+
+        <div class="hero-text">
+            <h1>Vipin Kumar V</h1>
+            <p>Senior Laravel Developer specializing in scalable backend systems, API integrations, and high-performance web applications.</p>
+            <button onclick="downloadResume()">Download Resume</button>
+        </div>
+    </div>
+</section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="card show">
+            Professional Laravel Developer with strong experience in scalable architecture, database optimization, REST
+            APIs, and performance tuning. Passionate about clean code, problem solving, and delivering high-quality
+            production systems.
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+
+        <div class="card">
+            <strong>Senior Laravel Developer – Entrix Labs Solutions, Technopark, Trivandrum (2024–Present)</strong>
+            <ul>
+                <li>Lead backend development for high-traffic web applications using Laravel and MySQL.</li>
+                <li>Designed and implemented scalable APIs for mobile and web clients.</li>
+                <li>Optimized application performance, reducing load times by 40%.</li>
+                <li>Participated in Agile sprints and contributed to project planning sessions.</li>
+                <li>Mentored junior developers and conducted code reviews for best practices.</li>
+                <li>Collaborated with product and design teams to deliver features on schedule.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <strong>Laravel Developer – Netventure Digital Solutions, Ernakulam (2020–2024)</strong>
+            <ul>
+                <li>Developed and maintained RESTful APIs for multiple client projects.</li>
+                <li>Handled production debugging and server performance optimization.</li>
+                <li>Worked with front-end developers to integrate dynamic UI components.</li>
+                <li>Implemented user authentication, role-based access control, and security best practices.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <strong>Laravel Developer – Couldme Soft Solutions, Ernakulam (2019–2020)</strong>
+            <ul>
+                <li>Built and modified backend features under the guidance of senior developers.</li>
+                <li>Created database schemas and optimized complex queries for efficiency.</li>
+                <li>Implemented third-party API integrations for payment gateways and services.</li>
+                <li>Ensured code quality with unit testing and version control (Git).</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <strong>PHP Developer – Shrishti Info Solutions, Ernakulam (2018–2019)</strong>
+            <ul>
+                <li>Performed troubleshooting of technical issues in the production environment.</li>
+                <li>Developed custom PHP scripts and backend modules for client websites.</li>
+                <li>Assisted in database design, migration, and optimization tasks.</li>
+                <li>Collaborated with team members to ensure project timelines were met.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="grid">
+            <div class="card" onclick="openModal({
+    title:'Maryal Theme Park',
+    description:'Maryal Theme Park is a Qatar-based project developed using Laravel and Next.js. It features RESTful APIs, real-time sales tracking, interactive dashboards, and analytics. The platform enables management to monitor ticket sales, visitor trends, and operational KPIs efficiently, streamlining decision-making and reporting.',
+    technologies:['Laravel','MySQL','JavaScript','Chart.js','Nextjs','Sanctum','Ajax','Metronic','QPAY','MPGES']
+})">Maryal Theme Park</div>
+
+            <div class="card" onclick="openModal({
+    title: 'Mpower App',
+    description: 'Mpower is a mobile-first app designed for females to track menstrual cycles, ovulation, and overall reproductive health. Built with Laravel backend APIs and a mobile frontend, it provides personalized reminders, health insights, and comprehensive analytics dashboards to help users manage their well-being effectively.',
+    technologies: ['Laravel', 'MySQL', 'JavaScript','Nextjs', 'Sanctum', 'Ajax', 'Metronic']
+})">Mpower APP</div>
+
+            <div class="card" onclick="openModal({
+    title:'AAXIS Project Management System',
+    description:'AAXIS is a comprehensive project management platform that enables teams to plan, track, and collaborate on projects seamlessly. Features include task assignment, progress tracking, timeline visualization, reporting, and analytics. The system improves productivity by centralizing project data and providing actionable insights for decision-making.',
+    technologies:['Laravel','MySQL','JavaScript','Html','CSS','AJAX','Skote']
+})">AAXIS System</div>
+
+            <div class="card" onclick="openModal({
+    title:'AFAAR Food Ordering Platform',
+    description:'AFAAR is an online food ordering platform that allows users to browse menus, place orders, and make secure payments. It features real-time order tracking, admin dashboards for restaurant management, and analytics to monitor sales and customer preferences, providing a seamless experience for both customers and business owners.',
+    technologies:['Laravel','React','MySQL','API','Skote','Razorpay']
+})">AFAAR</div>
+
+            <div class="card" onclick="openModal({
+    title:'HealthStack Clinic Management',
+    description:'HealthStack is a multi-clinic management system that allows the admin to create multiple clinics, automatically generate subdomains for each clinic, and manage subscription plans. Each clinic has its own configurable settings, including appointments, patient records, billing, and staff management. The platform also includes dashboards and analytics, streamlining operations and improving patient care across all clinics.',
+    technologies:['Laravel','MySQL','React','REST APIs','Docker','Swagger APIs','Metronic']
+})">HealthStack</div>
+
+
+            <div class="card" onclick="openModal({
+    title:'Custom CRM System',
+    description:'Custom CRM is a client relationship management solution tailored to track leads, manage sales pipelines, and visualize performance through interactive dashboards. It enhances business workflows, provides actionable insights, and ensures better customer engagement and retention.',
+    technologies:['Laravel','MySQL','JavaScript','Chart.js','Ajax']
+})">Custom CRM</div>
+            <div class="card" onclick="openModal({
+    title:'AKPCTA Portal',
+    description:'AKPCTA (All Kerala Private College Teachers Association) portal is built using Laravel and Skote template with Blade, Ajax, CSS, HTML, and Bootstrap. The system manages yearly registrations of teachers, generates identity cards based on their roles/functions, and provides comprehensive administration and record management for the association, streamlining all organizational processes.',
+    technologies:['Laravel','Skote','Blade','Ajax','CSS','HTML','Bootstrap']
+})">AKPCTA</div>
+
+            <div class="card" onclick="openModal({
+    title:'KVR Maruthi',
+    description:'KVR Maruthi is a vehicle booking and management system built using Laravel. It provides a website for customers to book vehicles online with Razorpay payment integration. The platform allows full management of KVR Maruthi\'s vehicle inventory, bookings, and customer interactions, ensuring a seamless experience for both admin and users.',
+    technologies:['Laravel','Razorpay','MySQL','JavaScript','HTML','CSS','Bootstrap','Ajax']
+})">KVR Maruthi</div>
+
+            <div class="card" onclick="openModal({
+    title:'Popular Maruthi',
+    description:'Popular Maruthi website is a vehicle booking platform similar to KVR Maruthi, built using Laravel. It handles vehicle management, online bookings, and payments via Razorpay. The system streamlines operations, tracks bookings efficiently, and provides a user-friendly interface for customers.',
+    technologies:['Laravel','Razorpay','MySQL','JavaScript','HTML','CSS','Bootstrap','Ajax']
+})">Popular Maruthi</div>
+
+            <div class="card" onclick="openModal({
+    title:'QikPay',
+    description:'QikPay is a billing and recharge platform similar to the QuickPay app, developed using Laravel. It allows users to make payments, recharge services, and manage transactions seamlessly. The admin panel, built with Skote template, Blade, Bootstrap, HTML, CSS, Ajax, and jQuery, provides comprehensive dashboards and management tools for monitoring transactions, users, and services efficiently.',
+    technologies:['Laravel','Blade','HTML','CSS','Ajax','jQuery','Bootstrap','Skote']
+})">QikPay</div>
+
+
+            <div class="card" onclick="openModal({
+    title:'VSM Hospital Management',
+    description:'VSM Hospital website is a comprehensive hospital management system developed using Laravel. It manages patient records, appointments, staff, billing, inventory, and all other hospital operations. The platform streamlines hospital administration and provides detailed reporting and analytics for better operational efficiency.',
+    technologies:['Laravel','MySQL','JavaScript','HTML','CSS','Ajax','Blade','Bootstrap']
+})">VSM Hospital</div>
+
+        </div>
+    </section>
+
+
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;">
+            <div class="skill">
+                <p>PHP</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="95%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>Laravel</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="95%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>RESTful API</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="92%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>JavaScript</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="85%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>jQuery</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="80%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>HTML / CSS</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="90%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>MySQL</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="90%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>Docker</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="75%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>Swagger API</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="80%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>AJAX / JSON / XML Handling</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="85%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>Git / WSL / Bruno</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="90%"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>Front-end Development (Blade)</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" data-progress="85%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================= -->
+    <!-- Education Section -->
+    <!-- ========================= -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+
+        <div class="card show" style="border-left:4px solid var(--accent); padding-left:20px;">
+            <strong>Bachelor of Technology – Computer Science, Mount Zion College, Pathanamthitta, Kerala
+                (2015–2018)</strong>
+            <ul>
+                <li>Graduated with First Class with Distinction Honors.</li>
+                <li>Specialized in Software Engineering and Web Development.</li>
+                <li>Active member of Coding Club and Hackathons.</li>
+                <li>Completed projects on Android, PHP, and .NET.</li>
+            </ul>
+        </div>
+
+        <div class="card show" style="border-left:4px solid var(--accent); padding-left:20px;">
+            <strong>Diploma in Computer Hardware, Kottayam, Kerala (2012–2015)</strong>
+            <ul>
+                <li>Science Stream (Maths, Physics, Chemistry).</li>
+                <li>Top 10% of class in academics.</li>
+                <li>Participated in science exhibitions and competitions.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ========================= -->
+    <!-- Accomplishments Section -->
+    <!-- ========================= -->
+    <section id="accomplishments">
+        <h2 class="section-title">Accomplishments</h2>
+
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;">
+            <div class="card show">
+                <strong>Best Vision Award 2021</strong>
+                <ul>
+                    <li>Contributed to and followed company achievements.</li>
+                    <li>Demonstrated expertise in building RESTful APIs and scalable applications.</li>
+                </ul>
+                <span class="tech-badge" style="margin-top:10px; display:inline-block;">Award</span>
+            </div>
+
+            <div class="card show">
+                <strong>Employee of the Year – 2023</strong>
+                <ul>
+                    <li>Recognized for delivering high-quality projects and mentoring juniors.</li>
+                </ul>
+                <span class="tech-badge" style="margin-top:10px; display:inline-block;">Recognition</span>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="card show">
+            📞 +91 8086525032 <br>
+            ✉️ cuvn121@gmail.com <br>
+            📍 Kerala, India
+        </div>
+    </section>
+
+    <footer>
+        <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
+            <p>© 2026 Vipin Kumar V | Senior Laravel Developer</p>
+            <div style="display:flex; gap:15px; font-size:16px;">
+                <a href="mailto:cuvn121@gmail.com" style="color:var(--accent); text-decoration:none;">✉️ Email</a>
+                <a href="tel:+918086525032" style="color:var(--accent); text-decoration:none;">📞 Call</a>
+                <span>📍 Kerala, India</span>
+            </div>
+            <p style="font-size:12px; opacity:0.7;">Connect with me on LinkedIn, GitHub, and other social platforms.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle" class="modal-title"></h3>
+            <p id="modalDescription" style="margin:15px 0;"></p>
+            <div id="modalTechnologies" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;"></div>
+            <button class="modal-close" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("active");
+        }
+
+        // Close mobile nav when a link is clicked
+        document.querySelectorAll('#navLinks li a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+        function openModal(text) { document.getElementById("modalText").innerText = text; document.getElementById("modal").style.display = "flex"; }
+        function closeModal() { document.getElementById("modal").style.display = "none"; }
+        function downloadResume() {
+            const link = document.createElement('a');
+            link.href = 'vipincv2026.pdf';
+            link.download = 'Vipin_Kumar_Resume_2026.pdf'; // optional custom filename
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        /* Animate Skill Bars with cascading */
+        function animateSkills() {
+            const skills = document.querySelectorAll(".skill-progress");
+            skills.forEach((bar, index) => {
+                setTimeout(() => { bar.style.width = bar.getAttribute("data-progress"); }, index * 200);
+            });
+        }
+
+        /* Animate cards and experience points */
+        function animateCards() {
+            const cards = document.querySelectorAll(".card");
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    card.classList.add("show");
+                    const lis = card.querySelectorAll("ul li");
+                    lis.forEach((li, i) => { setTimeout(() => li.classList.add("show"), i * 150); });
+                }
+            });
+        }
+
+        function openModal(project) {
+            // Set project title
+            document.getElementById("modalTitle").innerText = project.title;
+
+            // Set description
+            document.getElementById("modalDescription").innerText = project.description;
+
+            // Set technologies
+            const techContainer = document.getElementById("modalTechnologies");
+            techContainer.innerHTML = ''; // clear previous
+            project.technologies.forEach(tech => {
+                const span = document.createElement('span');
+                span.classList.add('tech-badge');
+                span.innerText = tech;
+                techContainer.appendChild(span);
+            });
+
+            // Show modal
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function animateExperienceCards() {
+            const cards = document.querySelectorAll("#experience .card");
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    card.classList.add("show");
+                    const lis = card.querySelectorAll("ul li");
+                    lis.forEach((li, i) => {
+                        setTimeout(() => li.classList.add("show"), i * 150);
+                    });
+                }
+            });
+        }
+
+        // Call this inside scroll and load events
+        window.addEventListener("scroll", animateExperienceCards);
+        window.addEventListener("load", animateExperienceCards);
+
+
+        /* Scroll animations */
+        window.addEventListener("scroll", () => {
+            animateSkills();
+            animateCards();
+        });
+        window.addEventListener("load", () => {
+            animateSkills();
+            animateCards();
+        });
+    </script>
+
+</body>
+
+</html>
