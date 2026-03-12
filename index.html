@@ -373,6 +373,70 @@
             transform: translateX(0);
         }
 
+         /* Education cards */
+        #education .card {
+            position: relative;
+            padding: 25px 25px 25px 40px;
+            border-left: 4px solid var(--accent);
+            background: var(--card);
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s, opacity 0.6s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Card hover effect */
+        #education .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Job title */
+        #education .card strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        /* Bullet points */
+        #education .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #education .card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.4s ease;
+        }
+
+        #education .card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Show animation classes */
+        #education .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #education .card ul li.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
 
         /* Modal animations */
         @keyframes fadeIn {
@@ -719,7 +783,7 @@
     <section id="education">
         <h2 class="section-title">Education</h2>
 
-        <div class="card show" style="border-left:4px solid var(--accent); padding-left:20px;">
+        <div class="card">
             <strong>Bachelor of Technology – Computer Science, Mount Zion College, Pathanamthitta, Kerala
                 (2015–2018)</strong>
             <ul>
@@ -730,7 +794,7 @@
             </ul>
         </div>
 
-        <div class="card show" style="border-left:4px solid var(--accent); padding-left:20px;">
+        <div class="card">
             <strong>Diploma in Computer Hardware, Kottayam, Kerala (2012–2015)</strong>
             <ul>
                 <li>Science Stream (Maths, Physics, Chemistry).</li>
