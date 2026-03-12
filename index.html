@@ -28,15 +28,18 @@
             color: var(--text);
             transition: 0.3s;
         }
-        form input, form textarea{
-background:#0f172a;
-color:white;
-outline:none;
-}
 
-form input:focus, form textarea:focus{
-box-shadow:0 0 6px #3b82f6;
-}
+        form input,
+        form textarea {
+            background: #0f172a;
+            color: white;
+            outline: none;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            box-shadow: 0 0 6px #3b82f6;
+        }
 
         /* HEADER */
         header {
@@ -934,44 +937,31 @@ box-shadow:0 0 6px #3b82f6;
 
 
     <section id="contact">
-    <h2 class="section-title">Contact Me</h2>
+        <h2 class="section-title">Contact Me</h2>
 
-    <div class="card show">
+        <div class="card show" style="text-align:center; padding:40px;">
 
-        <form action="https://formsubmit.co/cuvn121@gmail.com" method="POST">
+             <p style="margin-bottom:20px;">
+                If you are interested in hiring me or discussing a project, feel free to connect with me on WhatsApp.
+            </p>
 
-            <!-- Disable captcha -->
-            <input type="hidden" name="_captcha" value="false">
+            <a href="https://wa.me/918086525032?text=Hello%20Vipin%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
+                target="_blank" style="
+           display:inline-block;
+           background:#25D366;
+           color:white;
+           padding:14px 28px;
+           border-radius:10px;
+           font-weight:600;
+           text-decoration:none;
+           font-size:16px;
+           transition:0.3s;">
 
-            <!-- Email subject -->
-            <input type="hidden" name="_subject" value="New Portfolio Contact!">
+                💬 Chat on WhatsApp
+            </a>
 
-            <!-- Redirect after submit -->
-            <input type="hidden" name="_next" value="https://your-portfolio-url.vercel.app">
-
-            <div style="display:flex; flex-direction:column; gap:15px;";
-">
-
-                <input type="text" name="name" placeholder="Your Name" required
-                    style="padding:12px;border-radius:8px;border:none;">
-
-                <input type="email" name="email" placeholder="Your Email" required
-                    style="padding:12px;border-radius:8px;border:none;">
-
-                <textarea name="message" placeholder="Your Message" required rows="5"
-                    style="padding:12px;border-radius:8px;border:none;"></textarea>
-
-                <button type="submit"
-                    style="padding:12px;border:none;border-radius:8px;background:#3b82f6;color:white;font-weight:600;cursor:pointer;">
-                    Send Message
-                </button>
-
-            </div>
-
-        </form>
-
-    </div>
-</section>
+        </div>
+    </section>
 
     <footer>
         <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
