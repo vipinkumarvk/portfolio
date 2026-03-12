@@ -28,6 +28,15 @@
             color: var(--text);
             transition: 0.3s;
         }
+        form input, form textarea{
+background:#0f172a;
+color:white;
+outline:none;
+}
+
+form input:focus, form textarea:focus{
+box-shadow:0 0 6px #3b82f6;
+}
 
         /* HEADER */
         header {
@@ -925,13 +934,44 @@
 
 
     <section id="contact">
-        <h2 class="section-title">Contact</h2>
-        <div class="card show">
-            📞 +91 8086525032 <br>
-            ✉️ cuvn121@gmail.com <br>
-            📍 Kerala, India
-        </div>
-    </section>
+    <h2 class="section-title">Contact Me</h2>
+
+    <div class="card show">
+
+        <form action="https://formsubmit.co/cuvn121@gmail.com" method="POST">
+
+            <!-- Disable captcha -->
+            <input type="hidden" name="_captcha" value="false">
+
+            <!-- Email subject -->
+            <input type="hidden" name="_subject" value="New Portfolio Contact!">
+
+            <!-- Redirect after submit -->
+            <input type="hidden" name="_next" value="https://your-portfolio-url.vercel.app">
+
+            <div style="display:flex; flex-direction:column; gap:15px;";
+">
+
+                <input type="text" name="name" placeholder="Your Name" required
+                    style="padding:12px;border-radius:8px;border:none;">
+
+                <input type="email" name="email" placeholder="Your Email" required
+                    style="padding:12px;border-radius:8px;border:none;">
+
+                <textarea name="message" placeholder="Your Message" required rows="5"
+                    style="padding:12px;border-radius:8px;border:none;"></textarea>
+
+                <button type="submit"
+                    style="padding:12px;border:none;border-radius:8px;background:#3b82f6;color:white;font-weight:600;cursor:pointer;">
+                    Send Message
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</section>
 
     <footer>
         <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
