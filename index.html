@@ -173,17 +173,59 @@
 
         /* Modal tech badges */
         .tech-badge {
-            background: var(--accent);
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
             color: white;
-            padding: 5px 10px;
-            border-radius: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
-            transition: 0.3s;
+            opacity: 0;
+            transform: translateY(15px) scale(0.9);
+            transition: all 0.4s ease;
+            cursor: default;
+            letter-spacing: 0.3px;
+        }
+
+        .tech-badge.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .tech-badge:hover {
-            background: #1e40af;
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
+        }
+
+        .tech-badge1 {
+            background: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tech-badge.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes badgeFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: #2563eb;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+        }
+
+        #skills .card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
         }
 
         /* SECTION */
@@ -373,7 +415,7 @@
             transform: translateX(0);
         }
 
-         /* Education cards */
+        /* Education cards */
         #education .card {
             position: relative;
             padding: 25px 25px 25px 40px;
@@ -437,7 +479,7 @@
             transform: translateX(0);
         }
 
-          /* Accomplishmet cards */
+        /* Accomplishmet cards */
         #accomplishments .card {
             position: relative;
             padding: 25px 25px 25px 40px;
@@ -754,7 +796,7 @@
     technologies:['Laravel','MySQL','JavaScript','HTML','CSS','Ajax','Blade','Bootstrap']
 })">VSM Hospital</div>
 
-          <div class="card" onclick="openModal({
+            <div class="card" onclick="openModal({
     title:'KEPA - Kerala Police Academy',
     description:'KEPA (Kerala Police Academy) is a website for managing Kerala Police data including exams, events, and all other official police-related information. The system streamlines operations and data management using Laravel, providing a secure and organized platform.',
     technologies:['Laravel','AJAX','Bootstrap','JavaScript','jQuery','HTML','CSS']
@@ -766,79 +808,66 @@
 
     <section id="skills">
         <h2 class="section-title">Skills</h2>
-        <div class="grid" style="grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;">
-            <div class="skill">
-                <p>PHP</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="95%"></div>
+
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px;">
+
+            <div class="card show">
+                <strong>Backend</strong>
+                <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
+                    <span class="tech-badge">PHP</span>
+                    <span class="tech-badge">Laravel</span>
+                    <span class="tech-badge">Ajax</span>
+                    <span class="tech-badge">REST APIs</span>
+                    <span class="tech-badge">Swagger</span>
+                    <span class="tech-badge">Json</span>
+                    <span class="tech-badge">XML Handling</span>
+                    <span class="tech-badge">Laravel templates</span>
                 </div>
             </div>
-            <div class="skill">
-                <p>Laravel</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="95%"></div>
+
+            <div class="card show">
+                <strong>Frontend</strong>
+                <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
+                    <span class="tech-badge">HTML</span>
+                    <span class="tech-badge">CSS</span>
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">jQuery</span>
+                    <span class="tech-badge">Blade</span>
+                    <span class="tech-badge">Bootstrap</span>
                 </div>
             </div>
-            <div class="skill">
-                <p>RESTful API</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="92%"></div>
+
+            <div class="card show">
+                <strong>Database</strong>
+                <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
+                    <span class="tech-badge">MySQL</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">Database Optimization</span>
                 </div>
             </div>
-            <div class="skill">
-                <p>JavaScript</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="85%"></div>
+            <div class="card show">
+                <strong>Deployment & DevOps</strong>
+                <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
+                    <span class="tech-badge">AWS</span>
+                    <span class="tech-badge">cPanel</span>
+                    <span class="tech-badge">Git</span>
                 </div>
             </div>
-            <div class="skill">
-                <p>jQuery</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="80%"></div>
+            <div class="card show">
+                <strong>Tools</strong>
+                <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
+                    <span class="tech-badge">Gitlab</span>
+                    <span class="tech-badge">Github</span>
+                    <span class="tech-badge">Bitbucket</span>
+                    <span class="tech-badge">Docker</span>
+                    <span class="tech-badge">WSL</span>
+                    <span class="tech-badge">Bruno</span>
+                    <span class="tech-badge">Filezilla</span>
+                    <span class="tech-badge">VScode</span>
+                    <span class="tech-badge">Mysql Workbench</span>
                 </div>
             </div>
-            <div class="skill">
-                <p>HTML / CSS</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="90%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <p>MySQL</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="90%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <p>Docker</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="75%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <p>Swagger API</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="80%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <p>AJAX / JSON / XML Handling</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="85%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <p>Git / WSL / Bruno</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="90%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <p>Front-end Development (Blade)</p>
-                <div class="skill-bar">
-                    <div class="skill-progress" data-progress="85%"></div>
-                </div>
-            </div>
+
         </div>
     </section>
     <!-- ========================= -->
@@ -971,6 +1000,7 @@
             });
         }
 
+
         function openModal(project) {
             // Set project title
             document.getElementById("modalTitle").innerText = project.title;
@@ -983,7 +1013,7 @@
             techContainer.innerHTML = ''; // clear previous
             project.technologies.forEach(tech => {
                 const span = document.createElement('span');
-                span.classList.add('tech-badge');
+                span.classList.add('tech-badge1');
                 span.innerText = tech;
                 techContainer.appendChild(span);
             });
@@ -1020,6 +1050,24 @@
             animateSkills();
             animateCards();
         });
+
+        function animateSkillBadges() {
+            const section = document.getElementById("skills");
+            const rect = section.getBoundingClientRect();
+
+            if (rect.top < window.innerHeight - 100) {
+                const badges = document.querySelectorAll("#skills .tech-badge");
+
+                badges.forEach((badge, index) => {
+                    setTimeout(() => {
+                        badge.classList.add("show");
+                    }, index * 80);
+                });
+            }
+        }
+
+        window.addEventListener("scroll", animateSkillBadges);
+        window.addEventListener("load", animateSkillBadges);
     </script>
 
 </body>
